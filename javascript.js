@@ -14,7 +14,7 @@ function getComputerChoice(choice1, choice2, choice3) {
 function getHumanChoice() {
   const humanChoice = prompt(
     "What's your choice: \nRock, Paper or Scissors?"
-  ).toLowerCase();
+  ).toLowerCase().trim();
   if (
     humanChoice === "rock" ||
     humanChoice === "paper" ||
