@@ -12,9 +12,9 @@ function getComputerChoice(choice1, choice2, choice3) {
 
 //Get player choice function
 function getHumanChoice() {
-  const humanChoice = prompt(
-    "What's your choice: \nRock, Paper or Scissors?"
-  ).toLowerCase().trim();
+  const humanChoice = prompt("What's your choice: \nRock, Paper or Scissors?")
+    .toLowerCase()
+    .trim();
   if (
     humanChoice === "rock" ||
     humanChoice === "paper" ||
@@ -29,13 +29,11 @@ function getHumanChoice() {
 
 //Get player and computer choices to play a round
 function playRound(computerChoice, humanChoice) {
-  if (computerChoice === "rock" && humanChoice === "paper") {
-    humanScore++;
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-  } else if (computerChoice === "paper" && humanChoice === "scissors") {
-    humanScore++;
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
-  } else if (computerChoice === "scissors" && humanChoice === "rock") {
+  if (
+    (computerChoice === "rock" && humanChoice === "paper") ||
+    (computerChoice === "paper" && humanChoice === "scissors") ||
+    (computerChoice === "scissors" && humanChoice === "rock")
+  ) {
     humanScore++;
     console.log(`You win! ${humanChoice} beats ${computerChoice}`);
   } else if (computerChoice === humanChoice) {
