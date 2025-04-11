@@ -11,22 +11,19 @@ function getComputerChoice(choice1, choice2, choice3) {
 }
 
 //Get player choice function
-function getHumanChoice(choice1, choice2, choice3) {
-  const playerInput = prompt("What's your choice: \nRock, Paper or Scissors?");
-  const humanChoice = playerInput.toLowerCase();
-  switch (humanChoice) {
-    case "rock":
-      return choice1;
-      break;
-    case "paper":
-      return choice2;
-      break;
-    case "scissors":
-      return choice3;
-      break;
-    default:
-      alert("Invalid choice! Please type rock, paper, or scissors.");
-      return getHumanChoice(choice1, choice2, choice3)
+function getHumanChoice() {
+  const humanChoice = prompt(
+    "What's your choice: \nRock, Paper or Scissors?"
+  ).toLowerCase();
+  if (
+    humanChoice === "rock" ||
+    humanChoice === "paper" ||
+    humanChoice === "scissors"
+  ) {
+    return humanChoice;
+  } else {
+    alert("Invalid choice! Please type rock, paper, or scissors.");
+    return getHumanChoice();
   }
 }
 
