@@ -1,12 +1,12 @@
 //Get computer choice function
-function getComputerChoice(choice1, choice2, choice3) {
+function getComputerChoice() {
   const computerChoice = Math.random();
   if (computerChoice < 0.33) {
-    return choice1;
+    return "rock";
   } else if (computerChoice < 0.66) {
-    return choice2;
+    return "paper";
   } else {
-    return choice3;
+    return "scissors";
   }
 }
 
@@ -52,16 +52,21 @@ let humanScore = 0;
 let currentRound = 0;
 
 function playGame() {
+  //Increment and log the Round number
   currentRound++;
   console.log(`ROUND: ${currentRound}`);
 
-  const computerChoice = getComputerChoice("rock", "paper", "scissors");
-  const humanChoice = getHumanChoice("rock", "paper", "scissors");
+  //Log the user and computer choices in the round
+  const computerChoice = getComputerChoice();
+  const humanChoice = getHumanChoice();
   console.log(
     `Computer Choice: ${computerChoice} \nPlayer Choice: ${humanChoice}\n\n`
   );
+
+  //Log the round winner and increment the winner score
   playRound(computerChoice, humanChoice);
 
+  //Log the computer and player scores up to the current round
   console.log(
     `Computer Score: ${computerScore} \nPlayer Score: ${humanScore}\n\n`
   );
