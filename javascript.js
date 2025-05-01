@@ -30,33 +30,43 @@ function getComputerChoice() {
 //Get player and computer choices to play a round
 function playRound(computerChoice, humanChoice) {
   //Add a reference of the div
-  const div = document.querySelector("div")
+  const divRound = document.querySelector(".round-winner")
+  const divCompScore = document.querySelector(".computer-score")
+  const divHumScore = document.querySelector(".human-score")
+ 
+ 
   if (
     (computerChoice === "rock" && humanChoice === "paper") ||
     (computerChoice === "paper" && humanChoice === "scissors") ||
     (computerChoice === "scissors" && humanChoice === "rock")
   ) {
     humanScore++;
-    div.textContent = `You win! ${humanChoice} beats ${computerChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
+    divRound.textContent = `You win! ${humanChoice} beats ${computerChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
   } else if (computerChoice === humanChoice) {
     computerScore++;
     humanScore++;
-    div.textContent = `You both selected ${humanChoice}. It's a tie!. (Score: You ${humanScore} - ${computerScore} Computer)`;
+    divRound.textContent = `You both selected ${humanChoice}. It's a tie!. (Score: You ${humanScore} - ${computerScore} Computer)`;
   } else {
     computerScore++;
-    div.textContent = `You lose! ${computerChoice} beats ${humanChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
+    divRound.textContent = `You lose! ${computerChoice} beats ${humanChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
   }
 }
+
+  
 
 
 const buttons = document.querySelectorAll(".input-btn")
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (computerScore < 5 && humanScore < 5) {
     const userInput = button.textContent
     const computerChoice = getComputerChoice();
     playRound(computerChoice, userInput)
-  })
+    }
+    }
+    
+  )
 })
 
 
