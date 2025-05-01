@@ -29,20 +29,22 @@ function getComputerChoice() {
 
 //Get player and computer choices to play a round
 function playRound(computerChoice, humanChoice) {
+  //Add a reference of the div
+  const div = document.querySelector("div")
   if (
     (computerChoice === "rock" && humanChoice === "paper") ||
     (computerChoice === "paper" && humanChoice === "scissors") ||
     (computerChoice === "scissors" && humanChoice === "rock")
   ) {
     humanScore++;
-    console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+    div.textContent = `You win! ${humanChoice} beats ${computerChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
   } else if (computerChoice === humanChoice) {
     computerScore++;
     humanScore++;
-    console.log(`You both selected ${humanChoice}. It's a tie!`);
+    div.textContent = `You both selected ${humanChoice}. It's a tie!. (Score: You ${humanScore} - ${computerScore} Computer)`;
   } else {
     computerScore++;
-    console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+    div.textContent = `You lose! ${computerChoice} beats ${humanChoice}. (Score: You ${humanScore} - ${computerScore} Computer)`;
   }
 }
 
