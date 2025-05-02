@@ -1,11 +1,10 @@
+//Global variable counters
 let computerScore = 0;
 let humanScore = 0;
-let roundCounter = 1;
+let roundCounter = 0;
 
+//Elements reference
 const divRound = document.querySelector(".round-winner");
-const divCompScore = document.querySelector(".computer-score");
-const divHumScore = document.querySelector(".human-score");
-const divGameResult = document.querySelector(".game-result")
 const round = document.querySelector(".round-counter")
 const computerCounter = document.querySelector(".computer-counter")
 const humanCounter = document.querySelector(".human-counter")
@@ -18,9 +17,7 @@ const computerChoice = getComputerChoice(choices)
 
 //Get player and computer choices to play a round
 function playRound(computerChoice, humanChoice) {
-  round.textContent = `Round: ${roundCounter}`
-  computerCounter.textContent = `${computerScore}`
-  humanCounter.textContent = `${humanScore}`
+  //Play the game as long as both scores are less than 5
   if (computerScore < 5 && humanScore < 5) {
     if (
       (computerChoice === "rock" && humanChoice === "paper") ||
@@ -28,36 +25,44 @@ function playRound(computerChoice, humanChoice) {
       (computerChoice === "scissors" && humanChoice === "rock")
     ) {
       humanScore++;
-      roundCounter++;
       divRound.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
     } else if (computerChoice === humanChoice) {
-      roundCounter++
       computerScore++;
       humanScore++;
       divRound.textContent = `You both selected ${humanChoice}. It's a tie!.`;
     } else {
-      roundCounter++;
       computerScore++;
       divRound.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
     }
-  } else if (computerScore === 5 || humanScore === 5) {
-    divRound.textContent = finalResult();
+    roundCounter++
   }
-  divRound.setAttribute("style", "color: white")
+  
+  //Display the round and score counters
+  round.textContent = `Round: ${roundCounter}`
+  computerCounter.textContent = `${computerScore}`
+  humanCounter.textContent = `${humanScore}`
+
+  //Display final result 1 second after one of the scores reaches 5
+  if (computerScore === 5 || humanScore === 5) {
+    const restartBtn = document.createElement("button")
+    setTimeout(() => {
+      divRound.textContent = finalResult();
+    }, 1000)
+  }
 }
 
+//Event listener that calls playRound every time a button is clicked
 const buttons = document.querySelectorAll(".input-btn");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    if (computerScore < 6 && humanScore < 6) {
       const userInput = button.textContent;
       const computerChoice = getComputerChoice(choices);
-      playRound(computerChoice, userInput);
-    } 
+      playRound(computerChoice, userInput); 
   });
 });
 
+//Final result function that gets called at the end of the game
 function finalResult() {
   if (computerScore > humanScore) {
     return "Loser!!! GAME OVER";
