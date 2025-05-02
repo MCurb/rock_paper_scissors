@@ -47,13 +47,17 @@ function playRound(computerChoice, humanChoice) {
 
   //Display final result 1 second after one of the scores reaches 5
   if (computerScore === 5 || humanScore === 5) {
+
     const restartBtn = document.createElement("button")
+
     setTimeout(() => {
+      //Change text color depending on result
       if (computerScore > humanScore) {
         divRound.style.color = "rgb(230, 7, 7)"
       } else if (computerScore < humanScore) {
         divRound.style.color = "rgb(65, 200, 38)"
       } else {divRound.style.color = "rgb(255, 255, 255)"}
+
       divRound.textContent = finalResult();
     }, 1000)
   }
