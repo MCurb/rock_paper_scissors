@@ -11,7 +11,7 @@ const humanCounter = document.querySelector(".human-counter")
 
 //Get computer choice function
 const getComputerChoice = (array) => array[Math.floor(Math.random() * array.length)]
-const choices = ["rock", "paper", "scissors"]
+const choices = ["Rock", "Paper", "Scissors"]
 const computerChoice = getComputerChoice(choices)
 
 
@@ -20,18 +20,21 @@ function playRound(computerChoice, humanChoice) {
   //Play the game as long as both scores are less than 5
   if (computerScore < 5 && humanScore < 5) {
     if (
-      (computerChoice === "rock" && humanChoice === "paper") ||
-      (computerChoice === "paper" && humanChoice === "scissors") ||
-      (computerChoice === "scissors" && humanChoice === "rock")
+      (computerChoice === "Rock" && humanChoice === "Paper") ||
+      (computerChoice === "Paper" && humanChoice === "Scissors") ||
+      (computerChoice === "Scissors" && humanChoice === "Rock")
     ) {
       humanScore++;
+      divRound.style.color = "rgb(65, 200, 38)"
       divRound.textContent = `You win! ${humanChoice} beats ${computerChoice}.`;
     } else if (computerChoice === humanChoice) {
       computerScore++;
       humanScore++;
+      divRound.style.color = "rgb(255, 255, 255)"
       divRound.textContent = `You both selected ${humanChoice}. It's a tie!.`;
     } else {
       computerScore++;
+      divRound.style.color = "rgb(230, 7, 7)"
       divRound.textContent = `You lose! ${computerChoice} beats ${humanChoice}.`;
     }
     roundCounter++
@@ -46,6 +49,11 @@ function playRound(computerChoice, humanChoice) {
   if (computerScore === 5 || humanScore === 5) {
     const restartBtn = document.createElement("button")
     setTimeout(() => {
+      if (computerScore > humanScore) {
+        divRound.style.color = "rgb(230, 7, 7)"
+      } else if (computerScore < humanScore) {
+        divRound.style.color = "rgb(65, 200, 38)"
+      } else {divRound.style.color = "rgb(255, 255, 255)"}
       divRound.textContent = finalResult();
     }, 1000)
   }
@@ -67,7 +75,7 @@ function finalResult() {
   if (computerScore > humanScore) {
     return "Loser!!! GAME OVER";
   } else if (computerScore < humanScore) {
-    return "You're the winner! (But just for this time;)";
+    return "You win — but only this time!";
   } else if (computerScore === humanScore) {
     return "You both had the same luck today!";
   }
