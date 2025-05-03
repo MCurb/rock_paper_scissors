@@ -12,8 +12,6 @@ const humanCounter = document.querySelector(".human-counter")
 //Get computer choice function
 const getComputerChoice = (array) => array[Math.floor(Math.random() * array.length)]
 const choices = ["Rock", "Paper", "Scissors"]
-const computerChoice = getComputerChoice(choices)
-
 
 //Get player and computer choices to play a round
 function playRound(computerChoice, humanChoice) {
@@ -48,8 +46,6 @@ function playRound(computerChoice, humanChoice) {
   //Display final result 1 second after one of the scores reaches 5
   if (computerScore === 5 || humanScore === 5) {
 
-    const restartBtn = document.createElement("button")
-
     setTimeout(() => {
       //Change text color depending on result
       if (computerScore > humanScore) {
@@ -57,7 +53,6 @@ function playRound(computerChoice, humanChoice) {
       } else if (computerScore < humanScore) {
         divRound.style.color = "rgb(65, 200, 38)"
       } else {divRound.style.color = "rgb(255, 255, 255)"}
-
       divRound.textContent = finalResult();
     }, 1000)
   }
