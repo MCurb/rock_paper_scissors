@@ -91,7 +91,7 @@ const buttons = document.querySelectorAll(".input-btn");
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
-    const userInput = button.textContent;
+    const userInput = button.dataset.choice;
     const computerChoice = getComputerChoice(choices);
     playRound(computerChoice, userInput);
   });
